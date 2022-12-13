@@ -1,24 +1,27 @@
 <html>
     <head>
-    <script src="./dynamic_testing.js"></script>
-    <script src="./tictactoe.js"></script>
     <script type="importmap">
         {
           "imports": { 
-            "nodicanvas": "https://cdn.jsdelivr.net/gh/mattes2008/TicTacToe/js/scripts.js" 
+            "algA": "https://cdn.jsdelivr.net/gh/nodi-andy/bzw_js_course/tictactoe.js" 
+            "algB": "https://cdn.jsdelivr.net/gh/nodi-andy/bzw_js_course/tictactoe.js" 
            }
         }
     </script>
+    <script src="./dynamic_testing.js" type="module"></script>
+    <script src="./tictactoe_A.js" type="module"></script>
+    <script src="./tictactoe_B.js" type="module"></script>
 
     </head>
+
 <body style="background-color: rgb(240, 240, 240); display: flex; justify-content: space-evenly; align-items: center">
 
     <div style = "display: flex; flex-direction: column;">
         <div>
-            Algo A: <input></input>
+            Algo A: <input id="algA_Source" value= "./tictactoe_A.js"></input>
         </div>
         <div>
-            Algo B: <input></input>
+            Algo B: <input id="algB_Source" value = "./tictactoe_B.js"></input>
         </div>
         
         <div>
@@ -33,32 +36,4 @@
     </div>
 </body>
 
-<script>
-    
-    //let retA = checkForWin("x--o--x--");
-
-    function loopGameStates() {
-        for (let i = 0; i < Math.pow(3,9); i++) {
-            gameString = ("00000000" + i.toString(3)).slice(-9);
-            gameString = gameString.replaceAll("0", "-");
-            gameString = gameString.replaceAll("1", "x");
-            gameString = gameString.replaceAll("2", "o");
-            checkForWin(gameString);
-        }
-    }
-
-    function getPerformance() {
-        const t0 = performance.now();
-        loopGameStates();
-        const t1 = performance.now();
-        const delta = t1 - t0;
-        return "Duration: " + delta;
-    }
-
-    var btnGo = document.getElementById("btnGo");
-    btnGo.onclick = function () {
-        var out = document.getElementById("output");
-        out.innerHTML += getPerformance() + String.fromCharCode(13, 10);
-    }
-</script>
 </html>
